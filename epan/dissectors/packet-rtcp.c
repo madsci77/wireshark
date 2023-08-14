@@ -95,6 +95,7 @@ static dissector_table_t rtcp_rtpfb_dissector_table;
 
 static const value_string rtcp_version_vals[] =
 {
+    { 3, "EchoLink Version" },
     { 2, "RFC 1889 Version" },
     { 0, "Old VAT Version" },
     { 1, "First Draft Version" },
@@ -4434,7 +4435,7 @@ dissect_rtcp_common( tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void* 
 
     col_set_str(pinfo->cinfo, COL_PROTOCOL, (proto_to_use == proto_srtcp) ? "SRTCP" : "RTCP");
 
-    if (RTCP_VERSION(temp_byte) != 2) {
+    if (RTCP_VERSION(temp_byte) != 2 && RTCP_VERSION(temp_byte) != 3) {
         /* Unknown or unsupported version */
         col_add_fstr(pinfo->cinfo, COL_INFO, "Unknown %s version %u", (proto_to_use == proto_srtcp) ? "SRTCP" : "RTCP", RTCP_VERSION(temp_byte));
         ti = proto_tree_add_item(tree, proto_to_use, tvb, offset, -1, ENC_NA );
