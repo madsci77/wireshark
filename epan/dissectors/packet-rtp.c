@@ -349,6 +349,7 @@ static const value_string rtp_version_vals[] =
     { 2, "RFC 1889 Version" }, /* First for speed */
     { 0, "Old VAT Version" },
     { 1, "First Draft Version" },
+    { 3, "EchoLink Version" },
     { 0, NULL },
 };
 
@@ -2222,7 +2223,7 @@ dissect_rtp( tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void *data _U_
 
     /* fill in the rtp_info structure */
     rtp_info->info_version = version;
-    if (version != 2) {
+    if (version != 2 && version != 3) {
         /*
          * Unknown or unsupported version.
          */
