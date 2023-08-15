@@ -2223,7 +2223,7 @@ dissect_rtp( tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void *data _U_
 
     /* fill in the rtp_info structure */
     rtp_info->info_version = version;
-    if (version != 2 && version != 3 && version != 1) {
+    if (version != 2 && version != 3) {
         /*
          * Unknown or unsupported version.
          */
